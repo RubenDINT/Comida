@@ -1,0 +1,77 @@
+﻿<Window x:Class="Comida.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Comida"
+        mc:Ignorable="d"
+        Title="Comida" Height="700" Width="800" MinHeight="500" MinWidth="650"
+        Background="Beige">
+    
+    <Window.Resources>
+        <!-- Estilo para dar margen a los stack panel de la derecha-->
+        <Style TargetType="StackPanel" x:Key="EstiloStackPanel">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <!-- Estilo para el botón de Limpiar Selección-->
+        <Style TargetType="{x:Type Button}" x:Key="EstiloBotonSeleccion">
+            <Setter Property="IsEnabled" Value="False" />
+            <Setter Property="Width" Value="130" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="10,5,0,0" />
+        </Style>
+    </Window.Resources>
+    
+    <Border Margin="15" BorderBrush="Black" BorderThickness="2" Background="White">
+        <!-- Contenedor Principal --> 
+        <DockPanel Margin="10">
+            <!-- Contenedor de la derecha --> 
+            <StackPanel DockPanel.Dock="Right" Margin="10" x:Name="ContenedorDerecho" Background="LightGray" Width="250">
+                <!-- Nombre del plato -->
+                <StackPanel Style="{StaticResource EstiloStackPanel}">
+                    <TextBlock>Nombre del plato</TextBlock>
+                    <TextBox x:Name="NombrePlatoTextBox"></TextBox>
+                </StackPanel>
+                <!-- Foto del plato -->
+                <StackPanel Style="{StaticResource EstiloStackPanel}">
+                    <TextBlock>Foto del plato</TextBlock>
+                    <TextBox x:Name="FotoPlatoTextBox"></TextBox>
+                </StackPanel>
+                <!-- Desplegable con el tipo de comida -->
+                <StackPanel Style="{StaticResource EstiloStackPanel}">
+                    <TextBlock>Tipo de comida</TextBlock>
+                    <ComboBox x:Name="TipoComidaComboBox" IsEditable="False" IsEnabled="False" ItemsSource="{Binding Path= Tipo}"></ComboBox>
+                </StackPanel>
+                <!-- Checkboxes de los alérgenos -->
+                <GroupBox Header="Alérgenos" Margin="10" BorderBrush="Black">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <CheckBox Content="Leche" x:Name="LecheCheckBox" Grid.Column="0" Grid.Row="0" />
+                        <CheckBox Content="Soja" x:Name="SojaCheckBox" Grid.Column="1" Grid.Row="0" />
+                        <CheckBox Content="Gluten" x:Name="GlutenCheckBox" Grid.Column="0" Grid.Row="1" />
+                        <CheckBox Content="Sulfitos" x:Name="SulfitosCheckBox" Grid.Column="1" Grid.Row="1" />
+                    </Grid>
+                </GroupBox>
+                <!-- Botón de limpiar selección-->
+                <Button Content="Limpiar Selección" x:Name="LimpiarButton" Style="{StaticResource EstiloBotonSeleccion}"></Button>
+            </StackPanel>
+            <!-- Contenedor de la izquierda (con las imagenes) -->
+            <Border BorderBrush="Gray" BorderThickness="2" Margin="0,10,0,10">
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden"  Margin="0,0,10,0">
+                    <!-- Contenedor con las imágenes -->
+                    <WrapPanel x:Name="ContenedorImagenes">
+
+                    </WrapPanel>
+                </ScrollViewer>
+            </Border>
+        </DockPanel>
+    </Border>
+</Window>
