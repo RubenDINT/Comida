@@ -67,9 +67,24 @@
             <Border BorderBrush="Gray" BorderThickness="2" Margin="0,10,0,10">
                 <ScrollViewer HorizontalScrollBarVisibility="Hidden"  Margin="0,0,10,0">
                     <!-- Contenedor con las imágenes -->
-                    <WrapPanel x:Name="ContenedorImagenes">
-
-                    </WrapPanel>
+                    <ListBox ItemsSource="{Binding Path = ListaPlatos}" Margin="10">
+                        <!-- Especificamos el panel en el que irán los items -->
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <!-- Especificamos la plantilla que tendrá cada item -->
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path = Nombre}"></TextBlock>
+                                    <TextBlock>-</TextBlock>
+                                    <TextBlock Text="{Binding Path = Edad }"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </ScrollViewer>
             </Border>
         </DockPanel>
