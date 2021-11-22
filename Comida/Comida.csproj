@@ -70,6 +70,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="convertidores\BoolToVisible.cs" />
+    <Compile Include="convertidores\TipoToFont.cs" />
     <Compile Include="MainWindowVM.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -113,6 +115,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="assets\icono.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\china.png" />
+    <Resource Include="assets\gluten.png" />
+    <Resource Include="assets\mexico.png" />
+    <Resource Include="assets\milk.png" />
+    <Resource Include="assets\soybean.png" />
+    <Resource Include="assets\sulfide.png" />
+    <Resource Include="assets\united_states.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
