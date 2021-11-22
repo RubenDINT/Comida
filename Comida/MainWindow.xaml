@@ -120,11 +120,21 @@
                                         <TextBlock Text="{Binding Path = Nombre}" Style="{StaticResource EstiloTituloPlato}"></TextBlock>
                                     </Viewbox>
                                     <Image Source="{Binding Path = Imagen}" Style="{StaticResource EstiloImagen}"></Image>
+                                    <!-- Dock Panel con los alergénos y la nacionalidad -->
                                     <DockPanel LastChildFill="False">
-                                        <Image Source="/assets/gluten.png" Visibility="{Binding Path = Gluten, Converter = {StaticResource BoolToVisibleConverter }}" Style="{StaticResource EstiloImagenesAlergenos}" DockPanel.Dock="Right"></Image>
-                                        <Image Source="/assets/soybean.png" Visibility="{Binding Path = Soja, Converter = {StaticResource BoolToVisibleConverter }}" Style="{StaticResource EstiloImagenesAlergenos}" DockPanel.Dock="Right"></Image>
-                                        <Image Source="/assets/milk.png" Visibility="{Binding Path = Leche, Converter = {StaticResource BoolToVisibleConverter }}" Style="{StaticResource EstiloImagenesAlergenos}" DockPanel.Dock="Right"></Image>
-                                        <Image Source="/assets/sulfide.png" Visibility="{Binding Path = Sulfitos, Converter = {StaticResource BoolToVisibleConverter }}" Style="{StaticResource EstiloImagenesAlergenos}" DockPanel.Dock="Right"></Image>
+                                        <!-- Alérgenos -->
+                                        <Image Source="/assets/gluten.png" 
+                                               Visibility="{Binding Path = Gluten, Converter = {StaticResource BoolToVisibleConverter }}"                            Style="{StaticResource EstiloImagenesAlergenos}" 
+                                               DockPanel.Dock="Right"></Image>
+                                        <Image Source="/assets/soybean.png" 
+                                               Visibility="{Binding Path = Soja, Converter = {StaticResource BoolToVisibleConverter }}"                              Style="{StaticResource EstiloImagenesAlergenos}" 
+                                               DockPanel.Dock="Right"></Image>
+                                        <Image Source="/assets/milk.png" 
+                                               Visibility="{Binding Path = Leche, Converter = {StaticResource BoolToVisibleConverter }}"                             Style="{StaticResource EstiloImagenesAlergenos}" 
+                                               DockPanel.Dock="Right"></Image>
+                                        <Image Source="/assets/sulfide.png" 
+                                               Visibility="{Binding Path = Sulfitos, Converter = {StaticResource BoolToVisibleConverter }}"                          Style="{StaticResource EstiloImagenesAlergenos}" 
+                                               DockPanel.Dock="Right"></Image>
                                     </DockPanel>
                                 </StackPanel>
                             </Border>
