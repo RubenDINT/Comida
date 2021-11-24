@@ -12,6 +12,7 @@
     <Window.Resources>
         <local2:TipoToFont x:Key="TipoToFontConverter"></local2:TipoToFont>
         <local2:BoolToVisible x:Key="BoolToVisibleConverter"></local2:BoolToVisible>
+        <local2:TipoToSource x:Key="TipoToSourceConverter"></local2:TipoToSource>
         <!-- Estilo para dar margen a los stack panel de la derecha-->
         <Style TargetType="StackPanel" x:Key="EstiloStackPanel">
             <Setter Property="Margin" Value="10" />
@@ -49,7 +50,7 @@
             </Setter>
         </Style>
 
-        <Style TargetType="{x:Type Image}" x:Key="EstiloImagenesAlergenos">
+        <Style TargetType="{x:Type Image}" x:Key="EstiloImagenesAlergenosYPais">
             <Setter Property="Width" Value="30" />
             <Setter Property="Height" Value="30" />
             <Setter Property="Margin" Value="7" />
@@ -103,6 +104,7 @@
             <Border BorderBrush="Gray" BorderThickness="2" Margin="0,10,0,10">
                 <!-- Contenedor con las imágenes -->
                 <ListBox ItemsSource="{Binding Path = ListaPlatos}" 
+                         SelectedItem="{Binding Path = PlatoActual}"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              Margin="10">
                     <!-- Especificamos el panel en el que irán los items -->
@@ -122,19 +124,23 @@
                                     <Image Source="{Binding Path = Imagen}" Style="{StaticResource EstiloImagen}"></Image>
                                     <!-- Dock Panel con los alergénos y la nacionalidad -->
                                     <DockPanel LastChildFill="False">
+                                        <!-- País -->
+                                        <Image Source="{Binding Path = Pais, Converter = {StaticResource TipoToSourceConverter}}"
+                                               DockPanel.Dock="Left"
+                                               Style="{StaticResource EstiloImagenesAlergenosYPais}"/>
                                         <!-- Alérgenos -->
                                         <Image Source="/assets/gluten.png" 
-                                               Visibility="{Binding Path = Gluten, Converter = {StaticResource BoolToVisibleConverter }}"                            Style="{StaticResource EstiloImagenesAlergenos}" 
-                                               DockPanel.Dock="Right"></Image>
+                                               Visibility="{Binding Path = Gluten, Converter = {StaticResource BoolToVisibleConverter }}"                            Style="{StaticResource EstiloImagenesAlergenosYPais}" 
+                                               DockPanel.Dock="Right" />
                                         <Image Source="/assets/soybean.png" 
-                                               Visibility="{Binding Path = Soja, Converter = {StaticResource BoolToVisibleConverter }}"                              Style="{StaticResource EstiloImagenesAlergenos}" 
-                                               DockPanel.Dock="Right"></Image>
+                                               Visibility="{Binding Path = Soja, Converter = {StaticResource BoolToVisibleConverter }}"                              Style="{StaticResource EstiloImagenesAlergenosYPais}" 
+                                               DockPanel.Dock="Right" />
                                         <Image Source="/assets/milk.png" 
-                                               Visibility="{Binding Path = Leche, Converter = {StaticResource BoolToVisibleConverter }}"                             Style="{StaticResource EstiloImagenesAlergenos}" 
-                                               DockPanel.Dock="Right"></Image>
+                                               Visibility="{Binding Path = Leche, Converter = {StaticResource BoolToVisibleConverter }}"                             Style="{StaticResource EstiloImagenesAlergenosYPais}" 
+                                               DockPanel.Dock="Right" />
                                         <Image Source="/assets/sulfide.png" 
-                                               Visibility="{Binding Path = Sulfitos, Converter = {StaticResource BoolToVisibleConverter }}"                          Style="{StaticResource EstiloImagenesAlergenos}" 
-                                               DockPanel.Dock="Right"></Image>
+                                               Visibility="{Binding Path = Sulfitos, Converter = {StaticResource BoolToVisibleConverter }}"                          Style="{StaticResource EstiloImagenesAlergenosYPais}" 
+                                               DockPanel.Dock="Right" />  
                                     </DockPanel>
                                 </StackPanel>
                             </Border>

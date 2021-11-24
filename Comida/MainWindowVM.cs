@@ -19,6 +19,27 @@ namespace Comida
                 NotifyPropertyChanged("ListaPlatos");
             }
         }
+        private Plato platoActual;
+
+        public Plato PlatoActual
+        {
+            get { return platoActual; }
+            set { platoActual = value;
+                NotifyPropertyChanged("PlatoActual");
+            }
+        }
+
+        private ObservableCollection<String> tipoComida;
+
+        public ObservableCollection<String> TipoComida
+        {
+            get { return tipoComida; }
+            set { tipoComida = value;
+                NotifyPropertyChanged("TipoComida");
+            }
+        }
+
+
         public MainWindowVM()
         {
             listaPlatos = Plato.GetSamples("assets/");

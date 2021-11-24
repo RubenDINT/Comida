@@ -71,6 +71,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="convertidores\BoolToVisible.cs" />
+    <Compile Include="convertidores\TipoToSource.cs" />
     <Compile Include="convertidores\TipoToFont.cs" />
     <Compile Include="MainWindowVM.cs" />
     <Compile Include="MainWindow.xaml.cs">
