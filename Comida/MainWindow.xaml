@@ -67,12 +67,12 @@
                 <!-- Nombre del plato -->
                 <StackPanel Style="{StaticResource EstiloStackPanel}">
                     <TextBlock>Nombre del plato</TextBlock>
-                    <TextBox x:Name="NombrePlatoTextBox"></TextBox>
+                    <TextBox x:Name="NombrePlatoTextBox" Text="{Binding Path=PlatoActual.Nombre}"></TextBox>
                 </StackPanel>
                 <!-- Foto del plato -->
                 <StackPanel Style="{StaticResource EstiloStackPanel}">
                     <TextBlock>Foto del plato</TextBlock>
-                    <TextBox x:Name="FotoPlatoTextBox"></TextBox>
+                    <TextBox x:Name="FotoPlatoTextBox" Text="{Binding Path=PlatoActual.Foto}"></TextBox>
                 </StackPanel>
                 <!-- Desplegable con el tipo de comida -->
                 <StackPanel Style="{StaticResource EstiloStackPanel}">
@@ -91,10 +91,10 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <CheckBox Content="Leche" x:Name="LecheCheckBox" Grid.Column="0" Grid.Row="0" />
-                        <CheckBox Content="Soja" x:Name="SojaCheckBox" Grid.Column="1" Grid.Row="0" />
-                        <CheckBox Content="Gluten" x:Name="GlutenCheckBox" Grid.Column="0" Grid.Row="1" />
-                        <CheckBox Content="Sulfitos" x:Name="SulfitosCheckBox" Grid.Column="1" Grid.Row="1" />
+                        <CheckBox Content="Leche" x:Name="LecheCheckBox" Grid.Column="0" Grid.Row="0" IsChecked="{Binding Path=PlatoActual.Leche}" />
+                        <CheckBox Content="Soja" x:Name="SojaCheckBox" Grid.Column="1" Grid.Row="0" IsChecked="{Binding Path=PlatoActual.Soja}" />
+                        <CheckBox Content="Gluten" x:Name="GlutenCheckBox" Grid.Column="0" Grid.Row="1" IsChecked="{Binding Path=PlatoActual.Gluten}" />
+                        <CheckBox Content="Sulfitos" x:Name="SulfitosCheckBox" Grid.Column="1" Grid.Row="1" IsChecked="{Binding Path=PlatoActual.Sulfitos}" />
                     </Grid>
                 </GroupBox>
                 <!-- Botón de limpiar selección-->
@@ -125,9 +125,9 @@
                                     <!-- Dock Panel con los alergénos y la nacionalidad -->
                                     <DockPanel LastChildFill="False">
                                         <!-- País -->
-                                        <Image Source="{Binding Path = Pais, Converter = {StaticResource TipoToSourceConverter}}"
+                                        <Image Source="{Binding Path = Tipo, Converter = {StaticResource TipoToSourceConverter}}"
                                                DockPanel.Dock="Left"
-                                               Style="{StaticResource EstiloImagenesAlergenosYPais}"/>
+                                               Style="{StaticResource EstiloImagenesAlergenosYPais}" />
                                         <!-- Alérgenos -->
                                         <Image Source="/assets/gluten.png" 
                                                Visibility="{Binding Path = Gluten, Converter = {StaticResource BoolToVisibleConverter }}"                            Style="{StaticResource EstiloImagenesAlergenosYPais}" 
