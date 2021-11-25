@@ -28,5 +28,7 @@ namespace Comida
             this.DataContext = vm;
             InitializeComponent();
         }
+
+        private void LimpiarButton_Click(object sender, RoutedEventArgs e) => vm.PlatoActual = null;
     }
 }

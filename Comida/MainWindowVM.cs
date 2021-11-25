@@ -43,6 +43,7 @@ namespace Comida
         public MainWindowVM()
         {
             listaPlatos = Plato.GetSamples("assets/");
+            tipoComida = Plato.GetTiposComida();
         }
 
         //Implementación de la interfaz INotifyPropertyChanged

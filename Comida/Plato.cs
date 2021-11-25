@@ -39,5 +39,16 @@ class Plato
 
         return lista;
     }
+
+    public static ObservableCollection<string> GetTiposComida()
+    {
+        ObservableCollection<string> lista = new ObservableCollection<string>();
+
+        lista.Add("Americana");
+        lista.Add("China");
+        lista.Add("Mexicana");
+
+        return lista;
+    }
 }
 

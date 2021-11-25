@@ -23,6 +23,12 @@
             <Setter Property="Width" Value="130" />
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Margin" Value="10,5,0,0" />
+            <Setter Property="IsEnabled" Value="True" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=PlatoActual}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <!-- Estilo para el título de los platos -->
         <Style TargetType="{x:Type TextBlock}" x:Key="EstiloTituloPlato">
@@ -55,6 +61,15 @@
             <Setter Property="Height" Value="30" />
             <Setter Property="Margin" Value="7" />
         </Style>
+
+        <Style TargetType="ComboBox" x:Key="TriggerTipoComida">
+            <Setter Property="IsEnabled" Value="True" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=PlatoActual}" Value="{x:Null}">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
 
@@ -67,20 +82,21 @@
                 <!-- Nombre del plato -->
                 <StackPanel Style="{StaticResource EstiloStackPanel}">
                     <TextBlock>Nombre del plato</TextBlock>
-                    <TextBox x:Name="NombrePlatoTextBox" Text="{Binding Path=PlatoActual.Nombre}"></TextBox>
+                    <TextBox x:Name="NombrePlatoTextBox" Text="{Binding Path=PlatoActual.Nombre}" Template="{StaticResource miCuadroDeTexto}"></TextBox>
                 </StackPanel>
                 <!-- Foto del plato -->
                 <StackPanel Style="{StaticResource EstiloStackPanel}">
                     <TextBlock>Foto del plato</TextBlock>
-                    <TextBox x:Name="FotoPlatoTextBox" Text="{Binding Path=PlatoActual.Foto}"></TextBox>
+                    <TextBox x:Name="FotoPlatoTextBox" Text="{Binding Path=PlatoActual.Imagen}" Template="{DynamicResource miCuadroDeTexto}"></TextBox>
                 </StackPanel>
                 <!-- Desplegable con el tipo de comida -->
                 <StackPanel Style="{StaticResource EstiloStackPanel}">
                     <TextBlock>Tipo de comida</TextBlock>
-                    <ComboBox x:Name="TipoComidaComboBox" IsEditable="False" IsEnabled="False" ItemsSource="{Binding Path= Tipo}"></ComboBox>
+                    <ComboBox x:Name="TipoComidaComboBox" ItemsSource="{Binding Path= TipoComida}"
+                              SelectedItem="{Binding Path=PlatoActual.Tipo, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TriggerTipoComida}"></ComboBox>
                 </StackPanel>
                 <!-- Checkboxes de los alérgenos -->
-                <GroupBox Header="Alérgenos" Margin="10" BorderBrush="Black">
+                <GroupBox Header="Alérgenos" Margin="10" BorderBrush="Black" Template="{DynamicResource miGroupBoxTemplate}" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
@@ -91,14 +107,14 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <CheckBox Content="Leche" x:Name="LecheCheckBox" Grid.Column="0" Grid.Row="0" IsChecked="{Binding Path=PlatoActual.Leche}" />
-                        <CheckBox Content="Soja" x:Name="SojaCheckBox" Grid.Column="1" Grid.Row="0" IsChecked="{Binding Path=PlatoActual.Soja}" />
-                        <CheckBox Content="Gluten" x:Name="GlutenCheckBox" Grid.Column="0" Grid.Row="1" IsChecked="{Binding Path=PlatoActual.Gluten}" />
-                        <CheckBox Content="Sulfitos" x:Name="SulfitosCheckBox" Grid.Column="1" Grid.Row="1" IsChecked="{Binding Path=PlatoActual.Sulfitos}" />
+                        <CheckBox Content="Leche" x:Name="LecheCheckBox" Grid.Column="0" Grid.Row="0" IsChecked="{Binding Path=PlatoActual.Leche}" Template="{DynamicResource miCheckBoxTemplate}" />
+                        <CheckBox Content="Soja" x:Name="SojaCheckBox" Grid.Column="1" Grid.Row="0" IsChecked="{Binding Path=PlatoActual.Soja}" Template="{DynamicResource miCheckBoxTemplate}"/>
+                        <CheckBox Content="Gluten" x:Name="GlutenCheckBox" Grid.Column="0" Grid.Row="1" IsChecked="{Binding Path=PlatoActual.Gluten}" Template="{DynamicResource miCheckBoxTemplate}"/>
+                        <CheckBox Content="Sulfitos" x:Name="SulfitosCheckBox" Grid.Column="1" Grid.Row="1" IsChecked="{Binding Path=PlatoActual.Sulfitos}" Template="{DynamicResource miCheckBoxTemplate}"/>
                     </Grid>
                 </GroupBox>
                 <!-- Botón de limpiar selección-->
-                <Button Content="Limpiar Selección" x:Name="LimpiarButton" Style="{StaticResource EstiloBotonSeleccion}"></Button>
+                <Button Content="Limpiar Selección" x:Name="LimpiarButton" Style="{StaticResource EstiloBotonSeleccion}" Click="LimpiarButton_Click" Template="{DynamicResource miButtonTemplate}" ></Button>
             </StackPanel>
             <!-- Contenedor de la izquierda (con las imagenes) -->
             <Border BorderBrush="Gray" BorderThickness="2" Margin="0,10,0,10">
